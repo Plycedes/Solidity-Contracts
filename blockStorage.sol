@@ -7,6 +7,8 @@ contract BlockStorage{
     
     Crew[] public crew;
     mapping(string => uint256) public favNumQuery;
+    
+    uint256 favNum;
 
     struct Crew{
         uint256 favNum;
@@ -26,5 +28,13 @@ contract BlockStorage{
     function addCrewmate(string memory _name, uint256 _favNum) public {
         crew.push(Crew({favNum: _favNum, name: _name}));
         favNumQuery[_name] = _favNum;
+    }
+    
+    function store(uint256 _favNum) public {
+        favNum = _favNum;        
+    }
+
+    function retrive() public view returns(uint256){
+        return favNum;
     }
 }
